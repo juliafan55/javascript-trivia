@@ -54,3 +54,9 @@ Timer
 
 End game
     - show the final points achieved
+
+Question Categories
+- animal facts
+- space facts
+- movie facts
+- history facts
