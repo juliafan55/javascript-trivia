@@ -22,13 +22,19 @@ function startGame(){
     // console.log("start game");
     startPage.classList.add("hide");
     gamePage.classList.remove("hide");
+    nextQuestion();
 }
 
-// function selectAnswer(){
+function nextQuestion (){
 
-// }
+}
 
-const animalQuestions =[
+
+function selectAnswer(){
+
+}
+
+const listOfQuestions =[
     {
         question: "How many tails does a cat have?",
         answers: [
@@ -36,6 +42,24 @@ const animalQuestions =[
             { text: 6, correct: false},
             { text: 8, correct: false},
             { text: 10, correct: false},
+        ]
+    }
+    {
+        question: "How many planets are there?",
+        answers: [
+            { text: 4, correct:true },
+            { text: 6, correct: false},
+            { text: 8, correct: false},
+            { text: 10, correct: false},
+        ]
+    }
+    {
+        question: "What is the total number of Zodiac Signs?",
+        answers: [
+            { text: 6, correct:true },
+            { text: 8, correct: false},
+            { text: 10, correct: false},
+            { text: 12, correct: false},
         ]
     }
 ]

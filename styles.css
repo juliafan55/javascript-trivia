@@ -22,6 +22,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 /* start page elements */
@@ -69,29 +71,24 @@ body {
     text-shadow: 1px 1px 2px #427388; 
   }
   
-/* categories and card elements */
-.board {
-    column-count: 4;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+/* question and answer card */
+
+.questionCard {
+    background: yellow;
 }
 
-.row {
-    display: flex;
-    font-size: 50px;
-    padding: 30px;
-    border: 1px solid black;
-    justify-content: center;
-    align-content: center;
+.answerBtn {
+    display: grid;
+    padding: 4px;
+    margin: 10px 0;
 }
 
-.column {
-    justify-content: center;
-    align-content: center;
-}
+/* .nextBtn {
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+} */
+
 
 /* elements added by DOM */
 .hide {
