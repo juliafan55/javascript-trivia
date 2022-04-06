@@ -60,3 +60,7 @@ Question Categories
 - space facts
 - movie facts
 - history facts
+
+
+RESOURCES
+- Add modal - https://git.generalassemb.ly/carlos-godoy720/modals
