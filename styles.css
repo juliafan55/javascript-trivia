@@ -8,14 +8,20 @@ https://www.color-hex.com/color-palette/1010756 */
 /* font-family: 'Dosis', sans-serif;
 font-weight: 700; */
 
-* {
-    box-sizing: border-box;
+/* howey recommended styling reset*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     font-family: 'Dosis', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* start page elements */
@@ -64,6 +70,14 @@ body {
   }
   
 /* categories and card elements */
+.board {
+    column-count: 4;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
 
 .row {
     display: flex;
@@ -72,15 +86,6 @@ body {
     border: 1px solid black;
     justify-content: center;
     align-content: center;
-}
-
-.board {
-    background: yellow;
-    column-count: 4;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
 }
 
 .column {
