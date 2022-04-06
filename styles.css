@@ -63,7 +63,30 @@ body {
     text-shadow: 1px 1px 2px #427388; 
   }
   
+/* categories and card elements */
 
+.row {
+    display: flex;
+    font-size: 50px;
+    padding: 30px;
+    border: 1px solid black;
+    justify-content: center;
+    align-content: center;
+}
+
+.board {
+    background: yellow;
+    column-count: 4;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.column {
+    justify-content: center;
+    align-content: center;
+}
 
 /* elements added by DOM */
 .hide {

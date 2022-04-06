@@ -1,6 +1,8 @@
 // DOM Elements
-//Start Page Button
+//Start Page Elements
 const startGameBtn = document.querySelector(".startGameBtn");
+const startPage = document.querySelector(".startPage");
+const gamePage = document.querySelector(".gamePage");
 
 //Game Page Elements
 //Timer
@@ -8,7 +10,6 @@ const timerElement = document.querySelector(".timer");
 
 //Total Points Card
 const totalPointsElement = document.querySelector(".totalPoints");
-
 
 //Column1
 const category1Element = document.querySelector(".category1");
@@ -38,3 +39,11 @@ const questions42Element = document.querySelector(".questions4-2");
 const questions43Element = document.querySelector(".questions4-3");
 const questions44Element = document.querySelector(".questions4-4");
 
+//add functionality to Start Game button on Start Page
+// gamePage.classList.add(".hide")
+
+// startGameBtn.addEventListener("click", function(){
+//     console.log("start button works")
+//     startPage.classList.add(".hide");
+//     gamePage.classList.remove(".hide");
+// });
