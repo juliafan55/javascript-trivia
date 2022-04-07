@@ -5,35 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
     <title>Trivia</title>
 </head>
 <body>
-    <div class="startPage"> 
-        <!-- need to add instructions to the start page -->
-        <div class="startGameTitle">TRIVIA</div>
-        <button type="button" class="startGameBtn"> Start Game </button>
+<div class="startPage">
+    <div class="gameTitle">Trivia</div>
+    <button class="startBtn">Start</button>
+</div>
+<div class="gamePage hide">
+    <div class="questionContainer">
+        <div class="question">Question</div>
+        <div class="btn allAnswerBtns">
+            <button class="answerBtn opt1">Answer 1</button>
+            <button class="answerBtn opt2">Answer 2</button>
+            <button class="answerBtn opt3">Answer 3</button>
+            <button class="answerBtn opt4">Answer 4</button>
+        </div>
+        <button class="nextBtn">Next</button>
     </div>
-
-    <div class="gamePage hide">
-        <div class="gameTrackers">
-            <div class="timer"></div>
-            <div class="totalPoints"></div>
-        </div>
-
-        <div class="questionCard">
-            <div class="question">Question</div>
-            <button class="answerBtn option1">Answer 1</button>
-            <button class="answerBtn option2">Answer 2</button>
-            <button class="answerBtn option3">Answer 3</button>
-            <button class="answerBtn option4">Answer 4</button>
-            <button class="nextBtn"> Next </button>
-
-            </div>
-        </div>
 
     <script src="app.js"></script>
 </body>
