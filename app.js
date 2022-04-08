@@ -184,6 +184,9 @@ function selectedAnswer(answer){ //function that checks what was selected for an
         // console.log("answer is wrong")
     }
     document.querySelector(".totalScore").value = score; //stores the value of score in the totalScore element https://www.w3schools.com/jsref/prop_attr_value.asp
+    let totalScoreElement = document.querySelector(".totalScore");
+    totalScoreElement.innerHTML = `Total Score: ${score}`;
+    // console.log(score)
 }
 
 // Tico ajudou
