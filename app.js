@@ -35,11 +35,14 @@
 //if no more question
 //start button (hard reset)
 
+//resources
+// https://www.sitepoint.com/simple-javascript-quiz/
+
 //getting all required elements via DOM
 const startBtn = document.querySelector(".startBtn");
 const startPage = document.querySelector(".startPage")
-const nextBtn = document.querySelector(".nextBtn")
 const gamePage = document.querySelector(".gamePage")
+const nextBtn = document.querySelector(".nextBtn")
 
 //global variable, check which question we are at right now
 let currentQuestionIndex = 0;
@@ -68,7 +71,7 @@ startBtn.addEventListener("click", () => {
     // console.log("start button works")
    startPage.classList.add("hide"); //hides the start button
    gamePage.classList.remove("hide"); //unhides the game page
-   startGame(0) //initializes the startGame function
+   startGame(0) //initializes the startGame function at question index 0
 })
 
 //if the next button is clicked -> increment question by 1 (if there are any questions left in the array), show next question
@@ -101,6 +104,30 @@ function startGame(index){
     answer2Element.innerHTML = option2Text;
     answer3Element.innerHTML = option3Text;
     answer4Element.innerHTML = option4Text;
+
+    //suggested
+    const option = document.querySelectorAll(".answerBtn"); //pulls all the answer buttons
+    // https://stackoverflow.com/questions/30446152/how-to-add-parameters-onto-function-in-setattribute-method-in-javascript
+    //https://stackoverflow.com/questions/28685407/this-setattributeonclick-javascript-doesnt-works
+    for (let i=0; i<option.length; i++){ //iterates over the answer buttons
+        option[i].setAttribute("onclick", "selectedAnswer(this)") //add the onclick attribute with the function selectedAnswer
+        }
 }
 
+function selectedAnswer(answer){ //function that checks what was selected for an answer
+    let userAnswer = answer.textContent; //sets variable to the text that is inside answer in the array
+    let correctAnswer = questions[currentQuestionIndex].answer; //pulls correct answer from array
+    //currentQuestionIndex is a global variable so it can be pulled here - will update as question count goes up
+    // console.log(correctAnswer)
+    if (userAnswer === correctAnswer){ //checks if user answer === correct answer
+        answer.classList.add("correct") //adds green background
+        // console.log("answer is correct")
+    } else {
+        answer.classList.add("wrong") //else adds red background
+        // console.log("answer is wrong")
+    }
 
+    //make it unable to select other answers
+    //remove the cursor completely? classList "disabled"?
+    //https://stackoverflow.com/questions/18982642/how-to-disable-and-then-enable-onclick-event-on-div-with-javascript
+}
