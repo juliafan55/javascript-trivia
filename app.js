@@ -163,7 +163,7 @@ function startGame(index){
 }
 
 function selectedAnswer(answer){ //function that checks what was selected for an answer
-    console.log("global answer", globalAnswer);
+    // console.log("global answer", globalAnswer);
     globalAnswer.push(answer)
     if (!acceptingAnswers) return //make it so only accepts one click
     acceptingAnswers = false
@@ -171,7 +171,7 @@ function selectedAnswer(answer){ //function that checks what was selected for an
     let userAnswer = answer.textContent; //sets variable to the text that is inside answer in the array
     let correctAnswer = questions[currentQuestionIndex].answer; //pulls correct answer from array
     //currentQuestionIndex is a global variable so it can be pulled here - will update as question count goes up
-    console.log(correctAnswer)
+    // console.log(correctAnswer)
     if (userAnswer === correctAnswer){ //checks if user answer === correct answer
         score = score +1; //increment the score
         answer.classList.add("correct") //adds green background
@@ -200,3 +200,13 @@ function removeSelectedAnswerStyling(){ //function to remove styling
     globalAnswer=[]
 }
 
+
+let timerCount = 10;
+let timer = setInterval (function (){
+    document.querySelector(".timer").innerHTML = timerCount;
+    timerCount--;
+    if (timerCount === 0) {
+        clearInterval(timer);
+        document.querySelector(".timer").innerHTML = "You're out of time!";
+    }
+}, 1000);
