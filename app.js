@@ -106,9 +106,9 @@ nextBtn.addEventListener("click", () => {
 })
 
 //restart button if clicked, unhides start page and hides game page
+//https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
 restartGameBtn.addEventListener("click", () => {
-    startPage.classList.remove("hide");
-    gamePage.classList.add("hide");
+    window.location.reload();
 })
 
 //FUNCTIONS
@@ -200,4 +200,6 @@ function endGame(){
     restartGameBtn.classList.remove("hide");
     gameControls.classList.add("hide");
     endPage.innerHTML = `Your total score is ${score}!`;
+
+    // console.log(score)
 }
