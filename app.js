@@ -44,8 +44,9 @@ const startPage = document.querySelector(".startPage")
 const gamePage = document.querySelector(".gamePage")
 const nextBtn = document.querySelector(".nextBtn")
 
-//global variable, check which question we are at right now
+//global variables
 let currentQuestionIndex = 0;
+let globalSelectedAnswer = [];
 
 //array of all the questions and answers
 let questions = [
@@ -63,19 +64,30 @@ let questions = [
         question: "What does CSS stand for?",
         options: ["Common Style Sheet", "Colorful Style Sheet", "Compyter Style Sheet", "Cascading Style Sheet"],
         answer: "Cascading Style Sheet"
+    },
+    {
+        question: "What is the world's largest ocean?",
+        options: ["Atlantic", "Pacific", "Indian", "Artic"],
+        answer: "Pacific"
+    },
+    {
+        question: "How many phases of the moon are there?",
+        options: ["8", "9", "10", "11"],
+        answer: "8"
     }
 ]
 
 // if the start button is clicked -> brings to main game page -> starts the game
 startBtn.addEventListener("click", () => {
     // console.log("start button works")
-   startPage.classList.add("hide"); //hides the start button
-   gamePage.classList.remove("hide"); //unhides the game page
-   startGame(0) //initializes the startGame function at question index 0
+    startPage.classList.add("hide"); //hides the start button
+    gamePage.classList.remove("hide"); //unhides the game page
+    startGame(0) //initializes the startGame function at question index 0
 })
 
 //if the next button is clicked -> increment question by 1 (if there are any questions left in the array), show next question
 nextBtn.addEventListener("click", () => {
+    removeStylingSelectedAnswer();
     // console.log("next button works")
     if(currentQuestionIndex < questions.length -1 ){ //if number of the current question is less than the number of the questions array
         currentQuestionIndex++; //increment current question by one
@@ -92,26 +104,26 @@ function startGame(index){
     const answer2Element = document.querySelector(".opt2"); 
     const answer3Element = document.querySelector(".opt3"); 
     const answer4Element = document.querySelector(".opt4");
-
+    
     let questionText = `${questions[index].question}`; //pulls the questions from the array
     let option1Text = `${questions[index].options[0]}`; //pulls the answers from the array
     let option2Text = `${questions[index].options[1]}`; 
     let option3Text = `${questions[index].options[2]}`; 
     let option4Text = `${questions[index].options[3]}`; 
-
+    
     questionElement.innerHTML = questionText; //places the text of the array to the HTML
     answer1Element.innerHTML = option1Text;
     answer2Element.innerHTML = option2Text;
     answer3Element.innerHTML = option3Text;
     answer4Element.innerHTML = option4Text;
 
-    //suggested
+    //suggested -- Tico me ajudou
     const option = document.querySelectorAll(".answerBtn"); //pulls all the answer buttons
     // https://stackoverflow.com/questions/30446152/how-to-add-parameters-onto-function-in-setattribute-method-in-javascript
     //https://stackoverflow.com/questions/28685407/this-setattributeonclick-javascript-doesnt-works
-    for (let i=0; i<option.length; i++){ //iterates over the answer buttons
-        option[i].setAttribute("onclick", "selectedAnswer(this)") //add the onclick attribute with the function selectedAnswer
-        }
+        for (let i=0; i<option.length; i++){ //iterates over the answer buttons
+            option[i].setAttribute("onclick", "selectedAnswer(this)") //add the onclick attribute with the function selectedAnswer
+            }
 }
 
 function selectedAnswer(answer){ //function that checks what was selected for an answer
@@ -123,11 +135,23 @@ function selectedAnswer(answer){ //function that checks what was selected for an
         answer.classList.add("correct") //adds green background
         // console.log("answer is correct")
     } else {
-        answer.classList.add("wrong") //else adds red background
+        answer.classList.add("wrong") //else adds red background    answer1Element.removeAttribute("correct")
         // console.log("answer is wrong")
     }
 
+
     //make it unable to select other answers
-    //remove the cursor completely? classList "disabled"?
+    //remove the cursor completely? classList?
     //https://stackoverflow.com/questions/18982642/how-to-disable-and-then-enable-onclick-event-on-div-with-javascript
+}
+
+
+// Tico ajudou
+function removeStylingSelectedAnswer(){ //function to remove styling
+    globalSelectedlAnswer.map((answer) => { //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+        answer.classList.remove("correct")
+        answer.classList.remove("wrong")
+    })
+    globalSelectedAnswer = [] //Bom colocar aqui, porque depois de remover os styles, ele reseta esse array
+    // Pra não ficar guardando as opções das perguntas anteriores
 }

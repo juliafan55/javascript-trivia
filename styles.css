@@ -47,6 +47,8 @@ body {
     flex-direction: column;
 }
 
+
+/* styles that will be added by the DOM */
 .hide {
     display: none;
 }
@@ -57,4 +59,8 @@ body {
 
 .wrong {
     background-color: red;
+}
+
+.disabled {
+    pointer-events: none;
 }
