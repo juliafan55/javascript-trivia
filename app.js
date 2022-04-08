@@ -208,5 +208,7 @@ let timer = setInterval (function (){
     if (timerCount === 0) {
         clearInterval(timer);
         document.querySelector(".timer").innerHTML = "You're out of time!";
+        if (!acceptingAnswers) return
+        acceptingAnswers = false
     }
 }, 1000);
