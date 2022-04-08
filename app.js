@@ -44,7 +44,7 @@ const startBtn = document.querySelector(".startBtn");
 const startPage = document.querySelector(".startPage")
 const gamePage = document.querySelector(".gamePage")
 const nextBtn = document.querySelector(".nextBtn")
-// const totalScore = document.querySelector(".totalScore")
+const restartGameBtn = document.querySelector(".restartGameBtn")
 
 //global variables
 let currentQuestionIndex = 0;
@@ -63,52 +63,26 @@ let questions = [
         answer: "Castle in the Sky"
     },
     {   //1
-        question: "Which actor from the newest Star Wars trilogy also voiced a protagonist in a Studio Ghibli film?",
-        options: ["Lupita Nyong’o", "Daisy Ridley", "John Boyega", "Adam Driver"],
-        answer: "Daisy Ridley"
-    },
-    {   //2
-        question: "Which Studio Ghibli film was NOT directed by Hayao Miyazaki?",
-        options: ["Kiki's Delivery Service", "The Wind Rises", "Ponyo", "Grave of the Fireflies"],
-        answer: "Grave of the Fireflies"
-    },
-    {   //3
         question: "Which Studio Ghibli film does NOT include human-like animal characters?",
         options: ["Porco Rosso", "Princess Mononoke", "Spirited Away", "From Up on Poppy Hill"],
         answer: "From Up on Poppy Hill"
     },
-    {   //4
-        question: "How many Which Studio Ghibli character is featured in the studio’s logo? of the moon are there?",
+    {   //2
+        question: "Which Studio Ghibli character is featured in the studio’s logo? of the moon are there?",
         options: ["Totoro from My Neighbor Totoro", "Calcifer from Howl's Moving Castle", "Jiji from Kiki's Delivery Service", "Moro from Princess Mononoke"],
         answer: "Totoro from My Neighbor Totoro"
     },
-    {   //5
+    {   //3
         question: "Which author adapted the movie script for Princess Mononoke?",
         options: ["Neil Gaiman", "Michael Chabon", "Haruki Murakami", "Terry Pratchett"],
         answer: "Neil Gaiman"
     },
-    {   //6
+    {   //4
         question: "Which Studio Ghibli film is based on The Little Mermaid?",
         options: ["The Tale of Princess Kaguya", "Spirited Away", "Ponyo", "Grave of the Fireflies"],
         answer: "Ponyo"
-    },
-    {   //7
-        question: "Which Studio Ghibli film’s protagonist is a World War I veteran?",
-        options: ["Seita from Grave of the Fireflies", "Jiro Horikoshi from The Wind Rises", "Porco Rosso from Porco Rosso", "Shun Kazama from From Up on Poppy Hill"],
-        answer: "Porco Rosso from Porco Rosso"
-    },
-    {   //8
-        question: "Which Studio Ghibli film is based on a Diana Wynne Jones novel?",
-        options: ["Howl's Moving Castle", "The Secret World of Arrietty", "The Cat Returns", "Only Yesterday"],
-        answer: "Howl's Moving Castle"
-    },
-    {   //9
-        question: "Which of the following Studio Ghibli films is the director’s original work?",
-        options: ["The Secret World of Arrietty", "Tales of Earthsea", "Nausicaä of the Valley of the Wind", "The Tale of Princess Kaguya"],
-        answer: "Nausicaä of the Valley of the Wind"
     }
 ]
-
 
 //EVENT LISTENERS
 // if the start button is clicked -> brings to main game page -> starts the game
@@ -127,8 +101,14 @@ nextBtn.addEventListener("click", () => {
         currentQuestionIndex++; //increment current question by one
         startGame(currentQuestionIndex); //initialize next game by using the current question above
     } else {
-        // console.log("game ended")
+        endGame();
     }
+})
+
+//restart button if clicked, unhides start page and hides game page
+restartGameBtn.addEventListener("click", () => {
+    startPage.classList.remove("hide");
+    gamePage.classList.add("hide");
 })
 
 //FUNCTIONS
@@ -200,8 +180,8 @@ function removeSelectedAnswerStyling(){ //function to remove styling
     globalAnswer=[]
 }
 
-
-let timerCount = 10;
+//timer
+let timerCount = 30;
 let timer = setInterval (function (){
     document.querySelector(".timer").innerHTML = timerCount;
     timerCount--;
@@ -212,3 +192,12 @@ let timer = setInterval (function (){
         acceptingAnswers = false
     }
 }, 1000);
+
+function endGame(){
+    let endPage = document.querySelector(".endPage");
+    let gameControls = document.querySelector(".controls");
+    let restartGameBtn = document.querySelector(".restartGameBtn");
+    restartGameBtn.classList.remove("hide");
+    gameControls.classList.add("hide");
+    endPage.innerHTML = `Your total score is ${score}!`;
+}

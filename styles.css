@@ -90,9 +90,9 @@ body {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
+    margin: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin: 5px;
     border-radius: 8px;
     border-style: none;
     font-size: 15px;
@@ -107,7 +107,7 @@ body {
     color: #d4b5a9;
 }
 
-.allAnswerBtn .answerBtn{
+.allAnswerBtn {
     width: 100%;
 }
 
@@ -127,6 +127,35 @@ body {
 .nextBtn:hover{
     background-color: #a06468;
     color: white;
+}
+
+/* end page styling */
+.endPage {
+    background-color: #d4b5a9;
+    font-size: 40px;
+    padding: 40px;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.restartGameBtn {
+    font-size: 20px;
+    padding: 7px 150px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: #a06468;
+    color: #d4b5a9;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+    border-style: none;
+}
+
+.restartGameBtn:hover{
+    background-color:#d4b5a9;
+    color: #a06468;
 }
 
 /* scorecard and timer */
