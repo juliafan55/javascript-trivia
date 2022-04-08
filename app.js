@@ -38,6 +38,7 @@
 //resources
 // https://www.sitepoint.com/simple-javascript-quiz/
 
+//VARIABLES
 //getting all required elements via DOM
 const startBtn = document.querySelector(".startBtn");
 const startPage = document.querySelector(".startPage")
@@ -53,32 +54,58 @@ let acceptingAnswers = true;
 //variables for score keeping
 let score = 0;
 
+//QUESTIONS
 //array of all the questions and answers
 let questions = [
-    {
-        question: "What is 2+2?",
-        options: ["4", "5", "45", "22"],
-        answer: "4"
+    {   //0
+        question: "Which film was Studio Ghibli’s first official production?",
+        options: ["Castle in the Sky", "Nausicaä of the Valley of the Wind", "My Neighbor Totoro", "Grave of the Fireflies"],
+        answer: "Castle in the Sky"
     },
-    {
-        question: "How many states in United States?",
-        options: ["20", "30", "40", "50"],
-        answer: "50"
+    {   //1
+        question: "Which actor from the newest Star Wars trilogy also voiced a protagonist in a Studio Ghibli film?",
+        options: ["Lupita Nyong’o", "Daisy Ridley", "John Boyega", "Adam Driver"],
+        answer: "Daisy Ridley"
     },
-    {
-        question: "What does CSS stand for?",
-        options: ["Common Style Sheet", "Colorful Style Sheet", "Compyter Style Sheet", "Cascading Style Sheet"],
-        answer: "Cascading Style Sheet"
+    {   //2
+        question: "Which Studio Ghibli film was NOT directed by Hayao Miyazaki?",
+        options: ["Kiki's Delivery Service", "The Wind Rises", "Ponyo", "Grave of the Fireflies"],
+        answer: "Grave of the Fireflies"
     },
-    {
-        question: "What is the world's largest ocean?",
-        options: ["Atlantic", "Pacific", "Indian", "Artic"],
-        answer: "Pacific"
+    {   //3
+        question: "Which Studio Ghibli film does NOT include human-like animal characters?",
+        options: ["Porco Rosso", "Princess Mononoke", "Spirited Away", "From Up on Poppy Hill"],
+        answer: "From Up on Poppy Hill"
     },
-    {
-        question: "How many phases of the moon are there?",
-        options: ["8", "9", "10", "11"],
-        answer: "8"
+    {   //4
+        question: "How many Which Studio Ghibli character is featured in the studio’s logo? of the moon are there?",
+        options: ["Totoro from My Neighbor Totoro", "Calcifer from Howl's Moving Castle", "Jiji from Kiki's Delivery Service", "Moro from Princess Mononoke"],
+        answer: "Totoro from My Neighbor Totoro"
+    },
+    {   //5
+        question: "Which author adapted the movie script for Princess Mononoke?",
+        options: ["Neil Gaiman", "Michael Chabon", "Haruki Murakami", "Terry Pratchett"],
+        answer: "Neil Gaiman"
+    },
+    {   //6
+        question: "Which Studio Ghibli film is based on The Little Mermaid?",
+        options: ["The Tale of Princess Kaguya", "Spirited Away", "Ponyo", "Grave of the Fireflies"],
+        answer: "Ponyo"
+    },
+    {   //7
+        question: "Which Studio Ghibli film’s protagonist is a World War I veteran?",
+        options: ["Seita from Grave of the Fireflies", "Jiro Horikoshi from The Wind Rises", "Porco Rosso from Porco Rosso", "Shun Kazama from From Up on Poppy Hill"],
+        answer: "Porco Rosso from Porco Rosso"
+    },
+    {   //8
+        question: "Which Studio Ghibli film is based on a Diana Wynne Jones novel?",
+        options: ["Howl's Moving Castle", "The Secret World of Arrietty", "The Cat Returns", "Only Yesterday"],
+        answer: "Howl's Moving Castle"
+    },
+    {   //9
+        question: "Which of the following Studio Ghibli films is the director’s original work?",
+        options: ["The Secret World of Arrietty", "Tales of Earthsea", "Nausicaä of the Valley of the Wind", "The Tale of Princess Kaguya"],
+        answer: "Nausicaä of the Valley of the Wind"
     }
 ]
 
@@ -138,7 +165,7 @@ function startGame(index){
 function selectedAnswer(answer){ //function that checks what was selected for an answer
     console.log("global answer", globalAnswer);
     globalAnswer.push(answer)
-    if (!acceptingAnswers) return
+    if (!acceptingAnswers) return //make it so only accepts one click
     acceptingAnswers = false
     
     let userAnswer = answer.textContent; //sets variable to the text that is inside answer in the array
@@ -146,20 +173,17 @@ function selectedAnswer(answer){ //function that checks what was selected for an
     //currentQuestionIndex is a global variable so it can be pulled here - will update as question count goes up
     console.log(correctAnswer)
     if (userAnswer === correctAnswer){ //checks if user answer === correct answer
-        score = score +1;
+        score = score +1; //increment the score
         answer.classList.add("correct") //adds green background
         // console.log("answer is correct")
         // console.log(score)
     } else {
-        score = score -1;
+        score = score -1; //decrement the score
         answer.classList.add("wrong") //else adds red background
         // console.log(score)
         // console.log("answer is wrong")
     }
-    //make it unable to select other answers
-    //remove the cursor completely? classList?
-    //https://stackoverflow.com/questions/18982642/how-to-disable-and-then-enable-onclick-event-on-div-with-javascript
-    document.querySelector(".totalScore").value = score;
+    document.querySelector(".totalScore").value = score; //stores the value of score in the totalScore element https://www.w3schools.com/jsref/prop_attr_value.asp
 }
 
 // Tico ajudou

@@ -1,5 +1,5 @@
 /* color palette 
-https://www.color-hex.com/color-palette/1010756 */
+https://colorswall.com/palette/15701/ */
 
 /* font imports */
 @import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
@@ -24,29 +24,134 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    background-color:#2e4744;
 }
 
-.questionContainer {
-    background-color: yellow;
-    display: flex;
-    justify-content: center;    
-    align-items: center;
-    /* flex-direction: column; */
-}
-
-.question {
-    display: flex;
+/* start page styling */
+.startPage {
     justify-content: center;
     align-items: center;
-}
-
-.answerBtn{
+    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
+.gameTitle {
+    font-size: 100px;
+    color: #d4b5a9;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.startBtn {
+    font-size: 40px;
+    padding: 7px 50px;
+    border-radius: 8px;
+    background-color: #a06468;
+    color: #d4b5a9;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+    border-style: none;
+}
+
+.startBtn:hover {
+    background-color:#d4b5a9;
+    color: #a06468;
+  }
+
+/* game page styling */
+.questionContainer {
+    background-color: #d4b5a9;
+    padding:  60px 60px 40px 60px;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* question portion */
+.question {
+    font-size: 30px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+/* answer portion */
+.answerBtn {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
+    border-radius: 8px;
+    border-style: none;
+    font-size: 15px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+
+.answerBtn:hover {
+    background-color: #2e4744;
+    color: #d4b5a9;
+}
+
+.allAnswerBtn .answerBtn{
+    width: 100%;
+}
+
+/* next button */
+.nextBtn {
+    padding: 5px 20px;
+    font-size: 15px;
+    margin-top: 20px;
+    border-style: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+}
+
+.nextBtn:hover{
+    background-color: #a06468;
+    color: white;
+}
+
+/* scorecard and timer */
+.controls {
+    position: relative;
+}
+.timer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 25px;
+    background-color:#d4b5a9;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+.totalScore{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 25px;
+    background-color:#d4b5a9;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
 
 /* styles that will be added by the DOM */
 .hide {
@@ -54,13 +159,9 @@ body {
 }
 
 .correct {
-    background-color: green;
+    background-color: #74cc66;
 }
 
 .wrong {
-    background-color: red;
-}
-
-.disableClick {
-    pointer-events: none;
+    background-color: #CC6666;
 }
