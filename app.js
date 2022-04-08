@@ -43,11 +43,15 @@ const startBtn = document.querySelector(".startBtn");
 const startPage = document.querySelector(".startPage")
 const gamePage = document.querySelector(".gamePage")
 const nextBtn = document.querySelector(".nextBtn")
+// const totalScore = document.querySelector(".totalScore")
 
 //global variables
 let currentQuestionIndex = 0;
 let globalAnswer = [];
-let acceptingAnswers = true
+let acceptingAnswers = true;
+
+//variables for score keeping
+let score = 0;
 
 //array of all the questions and answers
 let questions = [
@@ -78,6 +82,8 @@ let questions = [
     }
 ]
 
+
+//EVENT LISTENERS
 // if the start button is clicked -> brings to main game page -> starts the game
 startBtn.addEventListener("click", () => {
     // console.log("start button works")
@@ -98,6 +104,7 @@ nextBtn.addEventListener("click", () => {
     }
 })
 
+//FUNCTIONS
 //start game function, pulls questions and answers from the questions array
 function startGame(index){
     const questionElement = document.querySelector(".question"); //pulls question element from HTML
@@ -133,20 +140,26 @@ function selectedAnswer(answer){ //function that checks what was selected for an
     globalAnswer.push(answer)
     if (!acceptingAnswers) return
     acceptingAnswers = false
+    
     let userAnswer = answer.textContent; //sets variable to the text that is inside answer in the array
     let correctAnswer = questions[currentQuestionIndex].answer; //pulls correct answer from array
     //currentQuestionIndex is a global variable so it can be pulled here - will update as question count goes up
-    // console.log(correctAnswer)
+    console.log(correctAnswer)
     if (userAnswer === correctAnswer){ //checks if user answer === correct answer
+        score = score +1;
         answer.classList.add("correct") //adds green background
         // console.log("answer is correct")
+        // console.log(score)
     } else {
+        score = score -1;
         answer.classList.add("wrong") //else adds red background
+        // console.log(score)
         // console.log("answer is wrong")
     }
     //make it unable to select other answers
     //remove the cursor completely? classList?
     //https://stackoverflow.com/questions/18982642/how-to-disable-and-then-enable-onclick-event-on-div-with-javascript
+    document.querySelector(".totalScore").value = score;
 }
 
 // Tico ajudou
