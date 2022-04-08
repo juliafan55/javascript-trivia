@@ -61,6 +61,6 @@ body {
     background-color: red;
 }
 
-.disabled {
+.disableClick {
     pointer-events: none;
 }

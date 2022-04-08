@@ -46,7 +46,8 @@ const nextBtn = document.querySelector(".nextBtn")
 
 //global variables
 let currentQuestionIndex = 0;
-let globalSelectedAnswer = [];
+let globalAnswer = [];
+let acceptingAnswers = true
 
 //array of all the questions and answers
 let questions = [
@@ -87,7 +88,7 @@ startBtn.addEventListener("click", () => {
 
 //if the next button is clicked -> increment question by 1 (if there are any questions left in the array), show next question
 nextBtn.addEventListener("click", () => {
-    removeStylingSelectedAnswer();
+    removeSelectedAnswerStyling();
     // console.log("next button works")
     if(currentQuestionIndex < questions.length -1 ){ //if number of the current question is less than the number of the questions array
         currentQuestionIndex++; //increment current question by one
@@ -123,10 +124,15 @@ function startGame(index){
     //https://stackoverflow.com/questions/28685407/this-setattributeonclick-javascript-doesnt-works
         for (let i=0; i<option.length; i++){ //iterates over the answer buttons
             option[i].setAttribute("onclick", "selectedAnswer(this)") //add the onclick attribute with the function selectedAnswer
-            }
+        }
+    acceptingAnswers = true
 }
 
 function selectedAnswer(answer){ //function that checks what was selected for an answer
+    console.log("global answer", globalAnswer);
+    globalAnswer.push(answer)
+    if (!acceptingAnswers) return
+    acceptingAnswers = false
     let userAnswer = answer.textContent; //sets variable to the text that is inside answer in the array
     let correctAnswer = questions[currentQuestionIndex].answer; //pulls correct answer from array
     //currentQuestionIndex is a global variable so it can be pulled here - will update as question count goes up
@@ -135,23 +141,22 @@ function selectedAnswer(answer){ //function that checks what was selected for an
         answer.classList.add("correct") //adds green background
         // console.log("answer is correct")
     } else {
-        answer.classList.add("wrong") //else adds red background    answer1Element.removeAttribute("correct")
+        answer.classList.add("wrong") //else adds red background
         // console.log("answer is wrong")
     }
-
-
     //make it unable to select other answers
     //remove the cursor completely? classList?
     //https://stackoverflow.com/questions/18982642/how-to-disable-and-then-enable-onclick-event-on-div-with-javascript
 }
 
-
 // Tico ajudou
-function removeStylingSelectedAnswer(){ //function to remove styling
-    globalSelectedlAnswer.map((answer) => { //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+function removeSelectedAnswerStyling(){ //function to remove styling
+    globalAnswer.map((answer) => { //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
         answer.classList.remove("correct")
         answer.classList.remove("wrong")
-    })
-    globalSelectedAnswer = [] //Bom colocar aqui, porque depois de remover os styles, ele reseta esse array
+    }) 
+    //Bom colocar aqui, porque depois de remover os styles, ele reseta esse array
     // Pra não ficar guardando as opções das perguntas anteriores
+    globalAnswer=[]
 }
+
