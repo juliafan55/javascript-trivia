@@ -47,7 +47,7 @@ Resource if you're having trouble -
 7. If you'd like to play again, click the Restart button!
 
 ## Next Steps
-The current version of the game doesn't contain different categories. I'd like to implement that with each category being a different Studio Ghibli move.
+The current version of the game doesn't contain different categories. I'd like to implement that with each category being a different Studio Ghibli movie.
 Also, I'd like to implement different point amount awarded depending on the difficulty of the question.
 
 ## Acknowledgments
