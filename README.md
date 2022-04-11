@@ -51,7 +51,7 @@ The current version of the game doesn't contain different categories. I'd like t
 Also, I'd like to implement different point amount awarded depending on the difficulty of the question.
 
 ## Acknowledgments
-[Modal reference by Carlos Godoy](https://git.generalassemb.ly/carlos-godoy720/modals)
-[Reference about Studio Ghibli](https://ghiblicollection.com/about)
-[Animated image reference by Geisiane Alves](https://github.com/GeisianeAlves/Moving-Castle-animate-landing-page)
-[Color Palette](https://colorswall.com/palette/15701/)
+- [Modal reference by Carlos Godoy](https://git.generalassemb.ly/carlos-godoy720/modals)
+- [Reference about Studio Ghibli](https://ghiblicollection.com/about)
+- [Animated image reference by Geisiane Alves](https://github.com/GeisianeAlves/Moving-Castle-animate-landing-page)
+- [Color Palette](https://colorswall.com/palette/15701/)
