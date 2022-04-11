@@ -202,6 +202,7 @@ let timer = setInterval (function (){
         document.querySelector(".timer").innerHTML = "You're out of time!";
         if (!acceptingAnswers) return
         acceptingAnswers = false
+        endGame()
     }
 }, 1000);
 
