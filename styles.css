@@ -60,6 +60,77 @@ body {
     color: #a06468;
   }
 
+/* modal styling */
+.modal {
+	background-color: rgba(0,0,0,0.4);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+    transform: translate(-50%, -50%);
+	width: 600px;
+    max-width: 100%;
+    height: 300px;
+    max-height: 100%
+}
+
+.openModal {
+    font-size: 15px;
+    padding: 7px 30px;
+    border-radius: 8px;
+    margin: 15px;
+    background-color: #a06468;
+    color: #d4b5a9;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+    border-style: none;
+}
+
+.openModal:hover {
+    background-color:#d4b5a9;
+    color: #a06468;
+  }
+
+.modal-textbox {
+	background-color: white;
+	height: 300px;
+	width: 600px;
+	border-radius: 5px;
+    display: flex;
+    background-color: #046684;
+    color: #d4b5a9;
+}
+
+.modalText h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.modalText p {
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.modalClose {
+ position: absolute;
+ z-index: 1;
+ top: 10px; 
+ right: 15px;
+ background-color: #a06468;
+ color: #d4b5a9;
+ padding: 3px 5px;
+ text-decoration: none;
+ border-radius: 3px;
+}
+
+.modalClose:hover {
+    background-color:#d4b5a9;
+    color: #a06468;
+  }
+
 /* game page styling */
 .questionContainer {
     background-color: #d4b5a9;

@@ -46,6 +46,10 @@ const gamePage = document.querySelector(".gamePage")
 const nextBtn = document.querySelector(".nextBtn")
 const restartGameBtn = document.querySelector(".restartGameBtn")
 
+const modalOpenBtn = document.querySelector(".openModal")
+const modal = document.querySelector(".modal")
+const modalCloseBtn = document.querySelector(".modalClose")
+
 //global variables
 let currentQuestionIndex = 0;
 let globalAnswer = [];
@@ -109,6 +113,15 @@ nextBtn.addEventListener("click", () => {
 //https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
 restartGameBtn.addEventListener("click", () => {
     window.location.reload();
+})
+
+modalOpenBtn.addEventListener("click", () => {
+    modal.classList.remove("hide");
+    // console.log ("modal btn")
+})
+
+modalCloseBtn.addEventListener("click", () => {
+    modal.classList.add("hide");
 })
 
 //FUNCTIONS
@@ -183,7 +196,7 @@ function removeSelectedAnswerStyling(){ //function to remove styling
 //timer
 let timerCount = 30;
 let timer = setInterval (function (){
-    document.querySelector(".timer").innerHTML = timerCount;
+    document.querySelector(".timer").innerHTML = `Time Left: ${timerCount}s`;
     timerCount--;
     if (timerCount === 0) {
         clearInterval(timer);
@@ -203,3 +216,4 @@ function endGame(){
 
     // console.log(score)
 }
+
