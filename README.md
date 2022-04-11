@@ -55,3 +55,10 @@ Also, I'd like to implement different point amount awarded depending on the diff
 - [Reference about Studio Ghibli](https://ghiblicollection.com/about)
 - [Animated image reference by Geisiane Alves](https://github.com/GeisianeAlves/Moving-Castle-animate-landing-page)
 - [Color Palette](https://colorswall.com/palette/15701/)
+
+## References Used for Game Logic
+- [Refresh the page - location.reload](https://developer.mozilla.org/en-US/docs/Web/API/Location/reload)
+- [Use setAttribute in DOM 1](https://stackoverflow.com/questions/30446152/how-to-add-parameters-onto-function-in-setattribute-method-in-javascript)
+- [Use setAttribute in DOM 2](https://stackoverflow.com/questions/28685407/this-setattributeonclick-javascript-doesnt-works)
+- [Store value in element - element.value](https://www.w3schools.com/jsref/prop_attr_value.asp)
+- [Array method - map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)

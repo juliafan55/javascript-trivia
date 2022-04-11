@@ -1,43 +1,3 @@
-// RETHINKING THIS
-//need:
-
-//event listener to startGameBtn
-//event listener to nextBtn
-
-// startGame()
-// starts the game
-// remove start button (when button is clicked, game starts)
-// shuffle through the questions, randomly (?)
-// set currentquestion at 0 - will need current question variable
-// make the questions appear
-// place the next question (function)
-
-//placeQuestion()
-//reset the game statue/clear the text/buttons
-//show the next question
-
-//showQuestion()
-//change the innertext of the question element to the one in the array
-//loop through all the answers for each question
-//create buttons for each answer 
-//put the text of each answer into the button
-
-//selectAnswer()
-//grab which button was selected
-//check if the selected button is correct
-//how do i store the information if the selected button is correct??
-//if answer is correct - show green
-//if answer is incorrect - show red
-//if there are more questions: questionsList.length > currentquestion + 1
-//show the next button
-//next button needs to increment 1 to the currentquestion
-//call placeQuestion()
-//if no more question
-//start button (hard reset)
-
-//resources
-// https://www.sitepoint.com/simple-javascript-quiz/
-
 //VARIABLES
 //getting all required elements via DOM
 const startBtn = document.querySelector(".startBtn");
@@ -91,7 +51,6 @@ let questions = [
 //EVENT LISTENERS
 // if the start button is clicked -> brings to main game page -> starts the game
 startBtn.addEventListener("click", () => {
-    // console.log("start button works")
     startPage.classList.add("hide"); //hides the start button
     gamePage.classList.remove("hide"); //unhides the game page
     startGame(0) //initializes the startGame function at question index 0
@@ -100,7 +59,6 @@ startBtn.addEventListener("click", () => {
 //if the next button is clicked -> increment question by 1 (if there are any questions left in the array), show next question
 nextBtn.addEventListener("click", () => {
     removeSelectedAnswerStyling();
-    // console.log("next button works")
     if(currentQuestionIndex < questions.length -1 ){ //if number of the current question is less than the number of the questions array
         currentQuestionIndex++; //increment current question by one
         startGame(currentQuestionIndex); //initialize next game by using the current question above
@@ -110,14 +68,12 @@ nextBtn.addEventListener("click", () => {
 })
 
 //restart button if clicked, unhides start page and hides game page
-//https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
 restartGameBtn.addEventListener("click", () => {
     window.location.reload();
 })
 
 modalOpenBtn.addEventListener("click", () => {
     modal.classList.remove("hide");
-    // console.log ("modal btn")
 })
 
 modalCloseBtn.addEventListener("click", () => {
@@ -145,10 +101,7 @@ function startGame(index){
     answer3Element.innerHTML = option3Text;
     answer4Element.innerHTML = option4Text;
 
-    //suggested -- Tico me ajudou
     const option = document.querySelectorAll(".answerBtn"); //pulls all the answer buttons
-    // https://stackoverflow.com/questions/30446152/how-to-add-parameters-onto-function-in-setattribute-method-in-javascript
-    //https://stackoverflow.com/questions/28685407/this-setattributeonclick-javascript-doesnt-works
         for (let i=0; i<option.length; i++){ //iterates over the answer buttons
             option[i].setAttribute("onclick", "selectedAnswer(this)") //add the onclick attribute with the function selectedAnswer
         }
@@ -156,7 +109,6 @@ function startGame(index){
 }
 
 function selectedAnswer(answer){ //function that checks what was selected for an answer
-    // console.log("global answer", globalAnswer);
     globalAnswer.push(answer)
     if (!acceptingAnswers) return //make it so only accepts one click
     acceptingAnswers = false
@@ -164,26 +116,20 @@ function selectedAnswer(answer){ //function that checks what was selected for an
     let userAnswer = answer.textContent; //sets variable to the text that is inside answer in the array
     let correctAnswer = questions[currentQuestionIndex].answer; //pulls correct answer from array
     //currentQuestionIndex is a global variable so it can be pulled here - will update as question count goes up
-    // console.log(correctAnswer)
     if (userAnswer === correctAnswer){ //checks if user answer === correct answer
         score = score +1; //increment the score
         answer.classList.add("correct") //adds green background
-        // console.log("answer is correct")
-        // console.log(score)
     } else {
         answer.classList.add("wrong") //else adds red background
-        // console.log(score)
-        // console.log("answer is wrong")
     }
-    document.querySelector(".totalScore").value = score; //stores the value of score in the totalScore element https://www.w3schools.com/jsref/prop_attr_value.asp
+    document.querySelector(".totalScore").value = score; //stores the value of score in the totalScore element
     let totalScoreElement = document.querySelector(".totalScore");
     totalScoreElement.innerHTML = `Total Score: ${score}`;
-    // console.log(score)
 }
 
 // Tico ajudou
 function removeSelectedAnswerStyling(){ //function to remove styling
-    globalAnswer.map((answer) => { //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+    globalAnswer.map((answer) => {
         answer.classList.remove("correct")
         answer.classList.remove("wrong")
     }) 
@@ -213,7 +159,5 @@ function endGame(){
     restartGameBtn.classList.remove("hide");
     gameControls.classList.add("hide");
     endPage.innerHTML = `Your total score is ${score}/5!`;
-
-    // console.log(score)
 }
 
