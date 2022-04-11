@@ -1,8 +1,7 @@
-# Trivia Game
+# Studio Ghibli Trivia
 
 ## Project Description
-Browser based trivia game, jeopardy style. As the timer counts down, answer as many questions as possible correctly 
-to gather points. If question is answered incorrectly, points will be deducted. The game ends when timer runs out.
+Browser based trivia game. As the timer counts down, answer as many questions as possible correctly to gather points. If question is answered incorrectly, will not be counted. The game ends when timer runs out or when the questions finish.
 
 ## Planning Process
 Pseudocode ideal game, separate MVP and stretch features. Create HTML elements, pull DOM elements and state global 
@@ -25,3 +24,8 @@ variables. Decide which elements need to be tracked.
 ## Stretch Goals
 - As a user, I want to be able to see the correct answer of the question if the wrong answer was selected.
 - As a user, I want to be able to select different time options to increase/decrease difficulty.
+
+## Acknowledgments
+https://git.generalassemb.ly/carlos-godoy720/modals 
+https://ghiblicollection.com/about 
+https://github.com/GeisianeAlves/Moving-Castle-animate-landing-page

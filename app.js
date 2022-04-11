@@ -171,7 +171,6 @@ function selectedAnswer(answer){ //function that checks what was selected for an
         // console.log("answer is correct")
         // console.log(score)
     } else {
-        // score = score -1; //decrement the score
         answer.classList.add("wrong") //else adds red background
         // console.log(score)
         // console.log("answer is wrong")
