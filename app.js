@@ -90,7 +90,6 @@ howlBtn.addEventListener("click", () => {
     nextBtn.addEventListener("click", () => {
         removeSelectedAnswerStyling();
         let array = howlArray()
-        // console.log(array)
         if(currentQuestionIndex < array.length -1 ){ //if number of the current question is less than the number of the questions array
             currentQuestionIndex++; //increment current question by one
             startGame(currentQuestionIndex, array); //initialize next game by using the current question above
@@ -127,7 +126,6 @@ function howlArray(){
 
 //start game function, pulls questions and answers from the questions array
 function startGame(index, categoryArray){
-    // console.log(categoryArray)
     if(!categoryArray) {
         const questionElement = document.querySelector(".question"); //pulls question element from HTML
         const answer1Element = document.querySelector(".opt1"); //pulls answer element from HTML
@@ -261,6 +259,7 @@ function endGame(){
     endPage.innerHTML = `Your total score is ${score}/6!`;
 }
 
+//ends the game if started in category
 function categoryEndGame(){
     let endPage = document.querySelector(".endPage");
     let gameControls = document.querySelector(".controls");
