@@ -1,11 +1,15 @@
 //VARIABLES
-//getting all required elements via DOM
+//getting all game required elements via DOM
 const startBtn = document.querySelector(".startBtn");
 const startPage = document.querySelector(".startPage")
 const gamePage = document.querySelector(".gamePage")
 const nextBtn = document.querySelector(".nextBtn")
 const restartGameBtn = document.querySelector(".restartGameBtn")
 
+//for the category
+const howlBtn = document.querySelector(".howlMovingCastle")
+
+//modal
 const modalOpenBtn = document.querySelector(".openModal")
 const modal = document.querySelector(".modal")
 const modalCloseBtn = document.querySelector(".modalClose")
@@ -39,23 +43,23 @@ let questions = [
         answer: "Totoro from My Neighbor Totoro",
         category: "General"
     },
-    {   //3
-        question: "Which author adapted the movie script for Princess Mononoke?",
-        options: ["Neil Gaiman", "Michael Chabon", "Haruki Murakami", "Terry Pratchett"],
-        answer: "Neil Gaiman",
-        category: "Princess Mononoke"
+    {   //3 - Howl's Moving Castle
+        question: "What is the name of the female lead?",
+        options: ["Jennifer", "Camila", "Anna", "Sophie"],
+        answer: "Sophie",
+        category: "Howl's Moving Castle"
     },
-    {   //4
-        question: "Who is the composer of the musical score of Princess Mononoke?",
-        options: ["Joe Hisaishi", "Hans Zimmer", "Yoko Kanno", "Ryuichi Sakamoto"],
-        answer: "Joe Hisaishi",
-        category: "Princess Mononoke"
+    {   //4 - Howl's Moving Castle
+        question: "What was the name of Howl's fire demon?",
+        options: ["Lucifer", "Calcifer", "Crucifer", "Furcifer"],
+        answer: "Calcifer",
+        category: "Howl's Moving Castle"
     },
-    {   //5
-        question: "Which Studio Ghibli film is based on The Little Mermaid?",
-        options: ["The Tale of Princess Kaguya", "Spirited Away", "Ponyo", "Grave of the Fireflies"],
-        answer: "Ponyo",
-        category: "General"
+    {   //5 - Howl's Moving Castle
+        question: "How many aliases does Howl have?",
+        options: ["None", "5", "As many as he needs", "3"],
+        answer: "As many as he needs",
+        category: "Howl's Moving Castle"
     }
 ]
 
@@ -64,8 +68,9 @@ let questions = [
 startBtn.addEventListener("click", () => {
     startPage.classList.add("hide"); //hides the start button
     gamePage.classList.remove("hide"); //unhides the game page
+    //if the next button is clicked -> increment question by 1 (if there are any questions left in the array), show next question
     nextBtn.addEventListener("click", () => {
-        removeSelectedAnswerStyling();
+        removeSelectedAnswerStyling(); //function to remove styling
         if(currentQuestionIndex < questions.length -1 ){ //if number of the current question is less than the number of the questions array
             currentQuestionIndex++; //increment current question by one
             startGame(currentQuestionIndex); //initialize next game by using the current question above
@@ -76,16 +81,25 @@ startBtn.addEventListener("click", () => {
     startGame(0) //initializes the startGame function at question index 0
 })
 
-//if the next button is clicked -> increment question by 1 (if there are any questions left in the array), show next question
-// nextBtn.addEventListener("click", () => {
-//     removeSelectedAnswerStyling();
-//     if(currentQuestionIndex < questions.length -1 ){ //if number of the current question is less than the number of the questions array
-//         currentQuestionIndex++; //increment current question by one
-//         startGame(currentQuestionIndex); //initialize next game by using the current question above
-//     } else {
-//         endGame();
-//     }
-// })
+//if Howl's Moving Castle category is clicked
+howlBtn.addEventListener("click", () => {
+    let array = howlArray()
+    startPage.classList.add("hide"); //hides the start button
+    gamePage.classList.remove("hide"); //unhides the game page
+
+    nextBtn.addEventListener("click", () => {
+        removeSelectedAnswerStyling();
+        let array = howlArray()
+        // console.log(array)
+        if(currentQuestionIndex < array.length -1 ){ //if number of the current question is less than the number of the questions array
+            currentQuestionIndex++; //increment current question by one
+            startGame(currentQuestionIndex, array); //initialize next game by using the current question above
+        } else {
+            categoryEndGame();
+        }
+    })
+    startGame(0, array)
+})
 
 //restart button if clicked, unhides start page and hides game page
 restartGameBtn.addEventListener("click", () => {
@@ -103,6 +117,14 @@ modalCloseBtn.addEventListener("click", () => {
 })
 
 //FUNCTIONS
+
+//this solves scoping issue because it can be declared in the variable
+//function to access Howl's Moving Castle in the questions array
+function howlArray(){
+    const filterHowl = questions.filter(category => category.category === "Howl's Moving Castle");
+    return filterHowl
+}
+
 //start game function, pulls questions and answers from the questions array
 function startGame(index, categoryArray){
     // console.log(categoryArray)
@@ -149,10 +171,12 @@ function startGame(index, categoryArray){
         answer3Element.innerHTML = option3Text;
         answer4Element.innerHTML = option4Text;
 
-        const option = document.querySelectorAll(".answerBtn"); //pulls all the answer buttons
-            for (let i=0; i<option.length; i++){ //iterates over the answer buttons
-                option[i].setAttribute("onclick", "selectedAnswer(this)") //add the onclick attribute with the function selectedAnswer
-            }
+        //for checking answers of the Howl's Moving Castle category
+        const optionHowl = document.querySelectorAll(".answerBtn"); //pulls all the answer buttons
+        for (let i=0; i<optionHowl.length; i++){ //iterates over the answer buttons
+            optionHowl[i].setAttribute("onclick", "selectedHowlAnswer(this)") //add the onclick attribute with the function selectedAnswer
+        } 
+
         acceptingAnswers = true
     }
 }
@@ -166,6 +190,30 @@ function selectedAnswer(answer){
     let userAnswer = answer.textContent; //sets variable to the text that is inside answer in the array
     let correctAnswer = questions[currentQuestionIndex].answer; //pulls correct answer from array
     //currentQuestionIndex is a global variable so it can be pulled here - will update as question count goes up
+
+    if (userAnswer === correctAnswer){ //checks if user answer === correct answer
+        score = score +1; //increment the score
+        answer.classList.add("correct") //adds green background
+    } else {
+        answer.classList.add("wrong") //else adds red background
+    }
+    document.querySelector(".totalScore").value = score; //stores the value of score in the totalScore element
+    let totalScoreElement = document.querySelector(".totalScore");
+    totalScoreElement.innerHTML = `Total Score: ${score}`;
+}
+
+
+//function that checks what was selected for an answer in the Howl's Moving Castle category
+function selectedHowlAnswer(answer) {
+    globalAnswer.push(answer) //push the removed styling
+    if (!acceptingAnswers) return //make it so only accepts one click
+    acceptingAnswers = false
+    
+    let userAnswer = answer.textContent; //sets variable to the text that is inside answer in the array
+    let howlAnswer = howlArray();
+    let correctAnswer = howlAnswer[currentQuestionIndex].answer; //pulls correct answer from array
+    //currentQuestionIndex is a global variable so it can be pulled here - will update as question count goes up
+
     if (userAnswer === correctAnswer){ //checks if user answer === correct answer
         score = score +1; //increment the score
         answer.classList.add("correct") //adds green background
@@ -203,7 +251,6 @@ let timer = setInterval (function (){
     }
 }, 1000);
 
-
 //ends the game and shows end game page
 function endGame(){
     let endPage = document.querySelector(".endPage");
@@ -211,32 +258,15 @@ function endGame(){
     let restartGameBtn = document.querySelector(".restartGameBtn");
     restartGameBtn.classList.remove("hide");
     gameControls.classList.add("hide");
-    endPage.innerHTML = `Your total score is ${score}/5!`;
+    endPage.innerHTML = `Your total score is ${score}/6!`;
 }
 
-const mononokeBtn = document.querySelector(".princessMononoke")
-function mononokeArray(){
-    const filterMononoke = questions.filter(category => category.category === "Princess Mononoke");
-    return filterMononoke
+function categoryEndGame(){
+    let endPage = document.querySelector(".endPage");
+    let gameControls = document.querySelector(".controls");
+    let restartGameBtn = document.querySelector(".restartGameBtn");
+    restartGameBtn.classList.remove("hide");
+    gameControls.classList.add("hide");
+    endPage.innerHTML = `Your total score is ${score}/3!`;
 }
 
-mononokeBtn.addEventListener("click", () => {
-    // const filterMononoke = questions.filter(category => category.category === "Princess Mononoke");
-    // console.log(filterMononoke)
-    let array = mononokeArray()
-    startPage.classList.add("hide"); //hides the start button
-    gamePage.classList.remove("hide"); //unhides the game page
-
-    nextBtn.addEventListener("click", () => {
-        removeSelectedAnswerStyling();
-        let array = mononokeArray()
-        console.log(array)
-        if(currentQuestionIndex < array.length -1 ){ //if number of the current question is less than the number of the questions array
-            currentQuestionIndex++; //increment current question by one
-            startGame(currentQuestionIndex, array); //initialize next game by using the current question above
-        } else {
-            endGame();
-        }
-    })
-    startGame(0, array)
-})
