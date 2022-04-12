@@ -8,7 +8,7 @@ Vanilla JavaScript, CSS and HTML.
 
 ## Wire Frames
 Start page of the game, it contains the game's title, Start Game button and About Studio Ghibli modal.
-![Project 1 - Start Page](https://user-images.githubusercontent.com/85954693/162788024-a839323c-6065-4207-bbf5-43dacf9d2542.png)
+![Project 1 - Start Page](https://user-images.githubusercontent.com/85954693/163041881-24887ae0-0381-4b77-9690-f5a5b7a19184.png)
 
 Open About Studio Ghibli modal which contains brief description about Studio Ghibli and functional close button to close the modal.
 ![Project 1 - Modal](https://user-images.githubusercontent.com/85954693/162788408-15431927-5fd1-47b4-8690-b281a4848a0f.png)
