@@ -15,7 +15,7 @@ let currentQuestionIndex = 0;
 let globalAnswer = [];
 let acceptingAnswers = true;
 
-//variables for score keeping
+//variable for score keeping
 let score = 0;
 
 //QUESTIONS
@@ -24,27 +24,38 @@ let questions = [
     {   //0
         question: "Which film was Studio Ghibli’s first official production?",
         options: ["Castle in the Sky", "Nausicaä of the Valley of the Wind", "My Neighbor Totoro", "Grave of the Fireflies"],
-        answer: "Castle in the Sky"
+        answer: "Castle in the Sky",
+        category: "General"
     },
     {   //1
         question: "Which Studio Ghibli film does NOT include human-like animal characters?",
         options: ["Porco Rosso", "Princess Mononoke", "Spirited Away", "From Up on Poppy Hill"],
-        answer: "From Up on Poppy Hill"
+        answer: "From Up on Poppy Hill",
+        category: "General"
     },
     {   //2
         question: "Which Studio Ghibli character is featured in the studio’s logo? of the moon are there?",
         options: ["Totoro from My Neighbor Totoro", "Calcifer from Howl's Moving Castle", "Jiji from Kiki's Delivery Service", "Moro from Princess Mononoke"],
-        answer: "Totoro from My Neighbor Totoro"
+        answer: "Totoro from My Neighbor Totoro",
+        category: "General"
     },
     {   //3
         question: "Which author adapted the movie script for Princess Mononoke?",
         options: ["Neil Gaiman", "Michael Chabon", "Haruki Murakami", "Terry Pratchett"],
-        answer: "Neil Gaiman"
+        answer: "Neil Gaiman",
+        category: "Princess Mononoke"
     },
     {   //4
+        question: "Who is the composer of the musical score of Princess Mononoke?",
+        options: ["Joe Hisaishi", "Hans Zimmer", "Yoko Kanno", "Ryuichi Sakamoto"],
+        answer: "Joe Hisaishi",
+        category: "Princess Mononoke"
+    },
+    {   //5
         question: "Which Studio Ghibli film is based on The Little Mermaid?",
         options: ["The Tale of Princess Kaguya", "Spirited Away", "Ponyo", "Grave of the Fireflies"],
-        answer: "Ponyo"
+        answer: "Ponyo",
+        category: "General"
     }
 ]
 
@@ -53,63 +64,102 @@ let questions = [
 startBtn.addEventListener("click", () => {
     startPage.classList.add("hide"); //hides the start button
     gamePage.classList.remove("hide"); //unhides the game page
+    nextBtn.addEventListener("click", () => {
+        removeSelectedAnswerStyling();
+        if(currentQuestionIndex < questions.length -1 ){ //if number of the current question is less than the number of the questions array
+            currentQuestionIndex++; //increment current question by one
+            startGame(currentQuestionIndex); //initialize next game by using the current question above
+        } else {
+            endGame();
+        }
+    })
     startGame(0) //initializes the startGame function at question index 0
 })
 
 //if the next button is clicked -> increment question by 1 (if there are any questions left in the array), show next question
-nextBtn.addEventListener("click", () => {
-    removeSelectedAnswerStyling();
-    if(currentQuestionIndex < questions.length -1 ){ //if number of the current question is less than the number of the questions array
-        currentQuestionIndex++; //increment current question by one
-        startGame(currentQuestionIndex); //initialize next game by using the current question above
-    } else {
-        endGame();
-    }
-})
+// nextBtn.addEventListener("click", () => {
+//     removeSelectedAnswerStyling();
+//     if(currentQuestionIndex < questions.length -1 ){ //if number of the current question is less than the number of the questions array
+//         currentQuestionIndex++; //increment current question by one
+//         startGame(currentQuestionIndex); //initialize next game by using the current question above
+//     } else {
+//         endGame();
+//     }
+// })
 
 //restart button if clicked, unhides start page and hides game page
 restartGameBtn.addEventListener("click", () => {
     window.location.reload();
 })
 
+//button to open modal
 modalOpenBtn.addEventListener("click", () => {
     modal.classList.remove("hide");
 })
 
+//button to close modal
 modalCloseBtn.addEventListener("click", () => {
     modal.classList.add("hide");
 })
 
 //FUNCTIONS
 //start game function, pulls questions and answers from the questions array
-function startGame(index){
-    const questionElement = document.querySelector(".question"); //pulls question element from HTML
-    const answer1Element = document.querySelector(".opt1"); //pulls answer element from HTML
-    const answer2Element = document.querySelector(".opt2"); 
-    const answer3Element = document.querySelector(".opt3"); 
-    const answer4Element = document.querySelector(".opt4");
+function startGame(index, categoryArray){
+    // console.log(categoryArray)
+    if(!categoryArray) {
+        const questionElement = document.querySelector(".question"); //pulls question element from HTML
+        const answer1Element = document.querySelector(".opt1"); //pulls answer element from HTML
+        const answer2Element = document.querySelector(".opt2"); 
+        const answer3Element = document.querySelector(".opt3"); 
+        const answer4Element = document.querySelector(".opt4");
+        
+        let questionText = `${questions[index].question}`; //pulls the questions from the array
+        let option1Text = `${questions[index].options[0]}`; //pulls the answers from the array
+        let option2Text = `${questions[index].options[1]}`; 
+        let option3Text = `${questions[index].options[2]}`; 
+        let option4Text = `${questions[index].options[3]}`; 
+        
+        questionElement.innerHTML = questionText; //places the text of the array to the HTML
+        answer1Element.innerHTML = option1Text;
+        answer2Element.innerHTML = option2Text;
+        answer3Element.innerHTML = option3Text;
+        answer4Element.innerHTML = option4Text;
     
-    let questionText = `${questions[index].question}`; //pulls the questions from the array
-    let option1Text = `${questions[index].options[0]}`; //pulls the answers from the array
-    let option2Text = `${questions[index].options[1]}`; 
-    let option3Text = `${questions[index].options[2]}`; 
-    let option4Text = `${questions[index].options[3]}`; 
-    
-    questionElement.innerHTML = questionText; //places the text of the array to the HTML
-    answer1Element.innerHTML = option1Text;
-    answer2Element.innerHTML = option2Text;
-    answer3Element.innerHTML = option3Text;
-    answer4Element.innerHTML = option4Text;
+        const option = document.querySelectorAll(".answerBtn"); //pulls all the answer buttons
+            for (let i=0; i<option.length; i++){ //iterates over the answer buttons
+                option[i].setAttribute("onclick", "selectedAnswer(this)") //add the onclick attribute with the function selectedAnswer
+            }
+        acceptingAnswers = true
+    } else {
+        const questionElement = document.querySelector(".question"); //pulls question element from HTML
+        const answer1Element = document.querySelector(".opt1"); //pulls answer element from HTML
+        const answer2Element = document.querySelector(".opt2"); 
+        const answer3Element = document.querySelector(".opt3"); 
+        const answer4Element = document.querySelector(".opt4");
+        
+        let questionText = `${categoryArray[index].question}`; //pulls the questions from the array
+        let option1Text = `${categoryArray[index].options[0]}`; //pulls the answers from the array
+        let option2Text = `${categoryArray[index].options[1]}`; 
+        let option3Text = `${categoryArray[index].options[2]}`; 
+        let option4Text = `${categoryArray[index].options[3]}`; 
+        
+        questionElement.innerHTML = questionText; //places the text of the array to the HTML
+        answer1Element.innerHTML = option1Text;
+        answer2Element.innerHTML = option2Text;
+        answer3Element.innerHTML = option3Text;
+        answer4Element.innerHTML = option4Text;
 
-    const option = document.querySelectorAll(".answerBtn"); //pulls all the answer buttons
-        for (let i=0; i<option.length; i++){ //iterates over the answer buttons
-            option[i].setAttribute("onclick", "selectedAnswer(this)") //add the onclick attribute with the function selectedAnswer
-        }
-    acceptingAnswers = true
+        const option = document.querySelectorAll(".answerBtn"); //pulls all the answer buttons
+            for (let i=0; i<option.length; i++){ //iterates over the answer buttons
+                option[i].setAttribute("onclick", "selectedAnswer(this)") //add the onclick attribute with the function selectedAnswer
+            }
+        acceptingAnswers = true
+    }
 }
 
-function selectedAnswer(answer){ //function that checks what was selected for an answer
-    globalAnswer.push(answer)
+//function that checks what was selected for an answer
+function selectedAnswer(answer){ 
+    globalAnswer.push(answer) //push the removed styling
     if (!acceptingAnswers) return //make it so only accepts one click
     acceptingAnswers = false
     
@@ -128,7 +178,8 @@ function selectedAnswer(answer){ //function that checks what was selected for an
 }
 
 // Tico ajudou
-function removeSelectedAnswerStyling(){ //function to remove styling
+//function to remove styling
+function removeSelectedAnswerStyling(){ 
     globalAnswer.map((answer) => {
         answer.classList.remove("correct")
         answer.classList.remove("wrong")
@@ -152,6 +203,8 @@ let timer = setInterval (function (){
     }
 }, 1000);
 
+
+//ends the game and shows end game page
 function endGame(){
     let endPage = document.querySelector(".endPage");
     let gameControls = document.querySelector(".controls");
@@ -161,3 +214,29 @@ function endGame(){
     endPage.innerHTML = `Your total score is ${score}/5!`;
 }
 
+const mononokeBtn = document.querySelector(".princessMononoke")
+function mononokeArray(){
+    const filterMononoke = questions.filter(category => category.category === "Princess Mononoke");
+    return filterMononoke
+}
+
+mononokeBtn.addEventListener("click", () => {
+    // const filterMononoke = questions.filter(category => category.category === "Princess Mononoke");
+    // console.log(filterMononoke)
+    let array = mononokeArray()
+    startPage.classList.add("hide"); //hides the start button
+    gamePage.classList.remove("hide"); //unhides the game page
+
+    nextBtn.addEventListener("click", () => {
+        removeSelectedAnswerStyling();
+        let array = mononokeArray()
+        console.log(array)
+        if(currentQuestionIndex < array.length -1 ){ //if number of the current question is less than the number of the questions array
+            currentQuestionIndex++; //increment current question by one
+            startGame(currentQuestionIndex, array); //initialize next game by using the current question above
+        } else {
+            endGame();
+        }
+    })
+    startGame(0, array)
+})
