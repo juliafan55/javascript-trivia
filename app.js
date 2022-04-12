@@ -176,7 +176,7 @@ function startGame(index, categoryArray){
         } 
 
         acceptingAnswers = true
-    }
+    } 
 }
 
 //function that checks what was selected for an answer
