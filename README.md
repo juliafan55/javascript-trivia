@@ -39,7 +39,7 @@ Resource if you're having trouble -
 
 ### Play the game
 1. Click the Start Game button.
-2. You only have 30 seconds to complete the questions - there are 5 total.
+2. You only have 30 seconds to complete the questions.
 3. If the question is answered correctly, 1 point will be added to the Total Score and background will turn green.
 4. If the question is answered incorrectly, nothing will be added to the Total Score and background will turn red.
 5. If time runs out before you complete all the questions you'll be brought to the End Page with Total Score and Restart button.
@@ -47,8 +47,7 @@ Resource if you're having trouble -
 7. If you'd like to play again, click the Restart button!
 
 ## Next Steps
-The current version of the game doesn't contain different categories. I'd like to implement that with each category being a different Studio Ghibli movie.
-Also, I'd like to implement different point amount awarded depending on the difficulty of the question.
+I'd like to implement more categories that with each category being a different Studio Ghibli movie. I encountered scoping issues and have to review the functions individually to be able to implement it. Also, I'd like to implement different point amount awarded depending on the difficulty of the question.
 
 ## Acknowledgments
 - [Modal reference by Carlos Godoy](https://git.generalassemb.ly/carlos-godoy720/modals)
