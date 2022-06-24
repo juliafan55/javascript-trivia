@@ -4,7 +4,7 @@
 
 Browser based trivia game with Studio Ghibli themes. As the timer counts down, answer as many questions as possible correctly to gather points. If question is answered incorrectly, will not be counted. You'll be unable to click on other answer options after the first answer is clicked. The game ends when timer runs out or when the questions finish.
 
-[Studio Ghibli Trivia](https://juliafan55.github.io/Project-1-Trivia/)
+[Studio Ghibli Trivia](https://juliafan55.github.io/javascript-trivia/)
 
 ## Technologies Used
 
@@ -45,7 +45,7 @@ Resource if you're having trouble -
 [How to use Git Clone](https://github.com/git-guides/git-clone)
 
 Link if you'd like to play in your browser -
-[Studio Ghibli Trivia](https://juliafan55.github.io/Project-1-Trivia/)
+[Studio Ghibli Trivia](https://juliafan55.github.io/javascript-trivia/)
 
 ### Play the game
 
